@@ -1,0 +1,80 @@
+        <h1>Veicoli</h1>
+    <ol>
+        {% for veic in veicoli %}
+        <li>test: {{veic}} </li>
+        {% endfor %}
+    </ol>
+
+    <h1>Veicoli</h1>
+    <ol>
+        {% for veic in veicoli %}
+        <li>Codice: {{veic.codiceMezzo}} | Targa: {{veic.targa}} | Filiare: {{veic.filiare}} | Marca: {{veic.marca}} | Modello: {{veic.modello}} | Anno: {{veic.dataimm|date('d-m-Y')}}</li>
+        {% endfor %}
+    </ol>
+
+
+    | Marca: {{veic.marca}} | Modello: {{veic.modello}} | Anno: {{veic.dataimm|date('d-m-Y')}}
+
+
+
+
+    <style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    th, td {
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    }
+    tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+
+<div class="example-wrapper">
+    <h1>NED s.p.a.</h1>
+
+    <h1>Mezzi</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">Codice Filiare</th>
+            <th scope="col">Targa</th>
+            <th scope="col">Codice Mezzo</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Modello</th>
+            <th scope="col">Data Imm</th>
+            <th scope="col">Data Rev</th>
+            <th scope="col">Euro</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for veic in veicoli %}
+        <tr>
+            <td>
+                <a href="{{path('app_detail_filiare',{'filiareId':veic.filiareId})}}">{{veic.filiare}}</a>
+            </td>  
+            <td>
+                {{veic.targa}}
+            </td>
+            <td>
+                {{veic.codiceMezzo}} 
+            </td>
+            <td>
+                {{veic.marca}} 
+            </td>
+            <td>
+                {{veic.modello}} 
+            </td>
+            <td>
+                {{veic.dataImm | date('d-m-Y')}} 
+            </td>
+            <td>
+                {{veic.dataRev | date('d-m-Y')}}
+                {{veic.dataRev | date('d-m-Y') | alert_revisione}}  
+            </td>
+            <td>
+                {{veic.classeEmiss}} 
+            </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>

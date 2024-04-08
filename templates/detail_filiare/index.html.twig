@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dettaglio Filiare {{filiari[0].codiceFiliare}}{% endblock %}
+
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+
+:root {
+	--top-color: #45484e;
+	--bottom-color: #7e8591;
+	
+	color: #FFFFFF;
+	font-family: 'Roboto';
+	font-size: 16px;
+	height: 100%;
+	
+	> * { box-sizing: border-box; }
+}
+
+body {
+	// Code below provided in part by Colorzilla :-)
+	background: var(--top-color);
+	background: -moz-linear-gradient(top, var(--top-color) 0%, var(--bottom-color) 100%);
+	background: -webkit-linear-gradient(top, var(--top-color) 0%, var(--bottom-color) 100%);
+	background: linear-gradient(to bottom, var(--top-color) 0%, var(--bottom-color) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FE5D26', endColorstr='#FFAE93',GradientType=0 );
+	// /colorzilla
+	
+	height: 100%;
+	margin: 0 auto;
+	max-width: 700px;
+	padding: 1rem;	
+	width: 100%;
+}
+
+details {
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+	
+	&[open] summary::after {
+		
+	}
+}
+
+summary {
+
+	
+	&::-webkit-details-marker {
+		display: none
+	}
+}
+
+p {
+	font: italic normal 400 1rem "Roboto";
+	margin: 0;
+	padding: .5rem 0;
+	 -webkit-animation: fadeIn .5s;
+		 -moz-animation: fadeIn .5s;
+		  -ms-animation: fadeIn .5s;
+			-o-animation: fadeIn .5s;
+				animation: fadeIn .5s;
+}
+
+@-webkit-keyframes fadeIn {
+	from { opacity: 0 }
+	to { opacity: 1 }
+}
+
+@keyframes fadeIn {
+	from { opacity: 0 }
+	to { opacity: 1 }
+}
+</style>
+<h2><a href="{{path('app_home')}}"> Torna alla scheda mezzi</a></h2>
+<h1> {{filiari[0].codiceFiliare}} - {{filiari[0].citta}}</h1>
+<details>
+	<summary>Informazioni sede</summary>
+    <ol>
+	    <li><p>Codice Filiare: {{filiari[0].codiceFiliare}}</p></li>
+        <li><p>Provincia: ({{filiari[0].prov}})</p></li>
+        <li><p>Città: {{filiari[0].citta}}</p></li>
+        <li><p>Indirizzo: {{filiari[0].indirizzo}}</p></li>
+    </ol>
+</details>
+<details>
+	<summary>Contatti</summary>
+	    <ol>
+	    <li><p>Telefono: <a href="tel:"{{filiari[0].telefono}}>+39{{filiari[0].telefono}}</a></p></li>
+        <li><p>email: <a href="mailto:"{{filiari[0].email}}>{{filiari[0].email}}</a></p></li>
+    </ol>
+</details>
+<details>
+	<summary>Lista dei mezzi associati a questa filiare</summary>
+    <p> Clicca <a href="{{path('app_mezzi',{'filiareId':filiari[0].id})}}">qui </a></p>
+</details>
+{% endblock %}
